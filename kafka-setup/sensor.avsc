@@ -1,0 +1,11 @@
+{
+  "namespace": "com.example",
+  "type": "record",
+  "name": "SensorData",
+  "fields": [
+    { "name": "id", "type": "int" },
+    { "name": "latitude", "type": "double" },
+    { "name": "longitude", "type": "double" },
+    { "name": "temperature", "type": "double" }
+  ]
+}
