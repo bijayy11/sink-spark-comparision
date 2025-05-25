@@ -36,18 +36,20 @@ producer = KafkaProducer(
 )
 
 with open("produced_events.txt", "w") as f:
-    for i in range(10):
+    for i in range(1000):
         key = i
         message = {
             "id": i,
             "latitude": round(random.uniform(-90.0, 90.0), 6),
             "longitude": round(random.uniform(-180.0, 180.0), 6),
-            "temperature": round(random.uniform(-30.0, 50.0), 2)
+            "temperature": round(random.uniform(-30.0, 50.0), 2),
+            "ts_produced": int(time.time() * 1000)  # <-- timestamp added
+
         }
         send_time = int(time.time() * 1000)
         f.write(f"{i},{send_time}\n")  # id,send_time
         producer.send('spark-test-topic', key=key, value=message)
         print(f"Produced: {message} with key: {key} at {send_time}")
-        time.sleep(1)
+        time.sleep(0.01)
 
 producer.flush()
