@@ -1,0 +1,14 @@
+cffi==1.17.1
+cryptography==44.0.3
+kafka-python==2.2.6
+mysql-connector-python==9.3.0
+numpy==2.0.2
+pandas==2.2.3
+py4j==0.10.9.7
+pycparser==2.22
+PyMySQL==1.1.1
+pyspark==3.5.5
+python-dateutil==2.9.0.post0
+pytz==2025.2
+six==1.17.0
+tzdata==2025.2
