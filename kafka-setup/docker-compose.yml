@@ -19,6 +19,7 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9093,PLAINTEXT_HOST://0.0.0.0:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9093,PLAINTEXT_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true" 
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.6.0
@@ -31,7 +32,7 @@ services:
       - kafka
 
   mysql:
-    image: mysql:8
+    image: mysql:8.0.33
     ports:
       - "3306:3306"
     environment:
@@ -39,7 +40,7 @@ services:
       MYSQL_DATABASE: testdb
     volumes:
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
-      # - ./mysql/conf.d/custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ./mysql/conf.d/custom.cnf:/etc/mysql/conf.d/custom.cnf
 
 
   kafka-connect:
@@ -78,4 +79,5 @@ services:
       CONNECT_RETRY_BACKOFF_MS: 10000
     volumes:
       - ./confluentinc-kafka-connect-jdbc-10.8.4:/etc/kafka-connect/jars/confluentinc-kafka-connect-jdbc
+      - ./kafka-connect-plugins/debezium-mysql:/etc/kafka-connect/jars/debezium-mysql
     restart: unless-stopped
