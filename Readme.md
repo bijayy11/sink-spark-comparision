@@ -10,10 +10,10 @@ This project demonstrates real-time Change Data Capture (CDC) and UPSERT operati
 - MySQL
 - Apache Spark
 - Kafka Connect with JDBC and Debezium connectors
-
+- Mysql connector and debezium connector .jar files.
 ---
 
-## 📦 Spark Structured Streaming Setup
+## Spark Structured Streaming Setup
 
 ### Submit Spark Job
 
